@@ -7,3 +7,6 @@ TCP networking with the Net Module
 
 DNS module
   - node dns.js
+
+UDP Datagram Sockets
+  - node udp.js
