@@ -101,3 +101,14 @@ WHATWG URL's origin property includes protocol and host, but not username or pas
 ├─────────────┴─────────────────────┴─────────────────────┴──────────┴────────────────┴───────┤
 │                                            href                                             │
 └─────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+Operating System
+const os = require('os')
+os.cpus()
+os.networkInterfaces().en0
+os.networkInterfaces().en0.map(i=>i.address)
+os.freemem()
+os.type()
+os.release()
+os.userInfo()
