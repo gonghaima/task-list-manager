@@ -36,3 +36,8 @@ HTTP server - Basic Streamming
 
 Requesting HTTP/HTTPS Data
   node request.js
+
+Routes
+  node server.js
+  curl -i localhost:8000/api
+  curl -i localhost:8000/home
