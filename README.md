@@ -33,3 +33,6 @@ HTTP server - Basic Streamming
       \r\n
 
       Node is ok with it as partial chunked response, because the response object is a writalbe stream.
+
+Requesting HTTP/HTTPS Data
+  node request.js
