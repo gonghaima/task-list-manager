@@ -11,7 +11,7 @@ DNS module
 UDP Datagram Sockets
   - node udp.js
 
-Streamming HTTP server
+HTTP server - Basic Streamming
   -  node http-server.js
     response headers
       Connection: keep-alive    - means: Connection stays open after the current transaction finishes, won't be killed after request/response, multiple request on the same connection is enabled.
