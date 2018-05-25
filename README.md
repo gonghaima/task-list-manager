@@ -41,3 +41,63 @@ Routes
   node server.js
   curl -i localhost:8000/api
   curl -i localhost:8000/home
+
+Parsing URLs and Query Strings#
+
+parse a string, returns a URL object.
+url.parse('https://www.pluralsight.com/search?q=buna')
+
+returns a URL object, and query as an object
+url.parse('https://www.pluralsight.com/search?q=buna', true)
+
+return query only, as an object
+url.parse('https://www.pluralsight.com/search?q=buna', true).query.q
+
+parse an object, return a url string
+url.format({
+...   protocol: 'https:',
+...   host: 'www.pluralsight.com',
+...   search: '?q=buna',
+...   pathname: '/search',
+... })
+'https://www.pluralsight.com/search?q=buna'
+
+
+If only care about query string, querystring module can be used.
+querystring.stringify({name:'Samer BUna', website: 'www.pluralsight.com'})
+'name=Samer%20BUna&website=www.pluralsight.com'
+
+query string to object
+querystring.parse('name=Samer%20BUna&website=www.pluralsight.com')
+{ name: 'Samer BUna', website: 'www.pluralsight.com' }
+
+
+URL Strings and URL Objects - REFERENCE - https://nodejs.org/api/url.html
+
+A URL string is a structured string containing multiple meaningful components. When parsed, a URL object is returned containing properties for each of these components.
+
+The url module provides two APIs for working with URLs: a legacy API that is Node.js specific, and a newer API that implements the same WHATWG URL Standard used by web browsers.
+
+While the Legacy API has not been deprecated, it is maintained solely for backwards compatibility with existing applications. New application code should use the WHATWG API.
+
+A comparison between the WHATWG and Legacy APIs is provided below. Above the URL 'http://user:pass@sub.host.com:8080/p/a/t/h?query=string#hash', properties of an object returned by the legacy url.parse() are shown. Below it are properties of a WHATWG URL object.
+
+WHATWG URL's origin property includes protocol and host, but not username or password.
+
+┌─────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                            href                                             │
+├──────────┬──┬─────────────────────┬─────────────────────┬───────────────────────────┬───────┤
+│ protocol │  │        auth         │        host         │           path            │ hash  │
+│          │  │                     ├──────────────┬──────┼──────────┬────────────────┤       │
+│          │  │                     │   hostname   │ port │ pathname │     search     │       │
+│          │  │                     │              │      │          ├─┬──────────────┤       │
+│          │  │                     │              │      │          │ │    query     │       │
+"  https:   //    user   :   pass   @ sub.host.com : 8080   /p/a/t/h  ?  query=string   #hash "
+│          │  │          │          │   hostname   │ port │          │                │       │
+│          │  │          │          ├──────────────┴──────┤          │                │       │
+│ protocol │  │ username │ password │        host         │          │                │       │
+├──────────┴──┼──────────┴──────────┼─────────────────────┤          │                │       │
+│   origin    │                     │       origin        │ pathname │     search     │ hash  │
+├─────────────┴─────────────────────┴─────────────────────┴──────────┴────────────────┴───────┤
+│                                            href                                             │
+└─────────────────────────────────────────────────────────────────────────────────────────────┘
