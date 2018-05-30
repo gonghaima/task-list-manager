@@ -116,3 +116,8 @@ os.userInfo()
 Stream
 node create-big-file.js
 node server-stream.js
+
+Implementing Readable & Writable Streams
+node writable.js
+node readable.js
+node readable.js | head -c3
