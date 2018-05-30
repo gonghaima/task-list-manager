@@ -4,6 +4,13 @@ const data = {id:'343223', name: 'Jessica'};
 
 server.on('request', (req, res) => {
   // console.log(req.url);
+  
+  req.on('data', (chunk) => {
+    body.push(chunk);
+  }).on('end', () => {
+    body = Buffer.concat(body).toString();
+    console.log(`request body: ${body}`);
+  });
   switch (req.url) {
     case '/api':
       res.writeHead(200, {
