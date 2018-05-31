@@ -130,3 +130,15 @@ node transform.js
 *** rm big.file ***
 node zip.js big.file
 node unzip.js big.file.zz
+
+  Composability with streams
+  Stream types
+    - pipe() vs events
+    - Implementing vs consuming
+    - Paused vs flowing
+  new
+    - stream.Readable
+    - stream.Writable
+    - stream.Duplex
+    - stream.Transform
+  The zlib/crypto transform streams
