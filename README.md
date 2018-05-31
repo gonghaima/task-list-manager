@@ -121,3 +121,12 @@ Implementing Readable & Writable Streams
 node writable.js
 node readable.js
 node readable.js | head -c3
+
+Duplex & Transform streams
+node duplex.js
+node transform.js
+*** ll -h to check file size on big.file.gz from 54M to 162k ***
+*** gunzip big.file.gz ***
+*** rm big.file ***
+node zip.js big.file
+node unzip.js big.file.zz
