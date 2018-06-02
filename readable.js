@@ -24,7 +24,7 @@ const {
 
 const inStream = new Readable({
   read(size) {
-    setTimeout(() => {
+    setTimeout(() => { 
       //push null to stop the process
       if (this.currentCharCode > 90){
         this.push(null);

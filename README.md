@@ -142,3 +142,24 @@ node unzip.js big.file.zz
     - stream.Duplex
     - stream.Transform
   The zlib/crypto transform streams
+
+Scalability Strategies - for the benefits of workload, availability, fault tolerance.
+  - Cloning (clone multiple instances, effective & little cost on development)
+  - Decomposing (based on functionality and services, known as micro-service)
+  - SPlitting (split application into multiple instances, where each instance handle a portion of the funcitonality, known as horizontal partitioning, or shalding in database) require look-up step before each operation to determine which instance of the application to use.
+
+Buildin tools for cloning strategy
+  - Child Processes Events and Standard IO
+  - ways to create child processes
+    1. spawn()
+    2. fork()
+    3. exec()
+    4. execFile()
+
+node spawn
+  - run command in child process, can register listener on event
+node spawn-pipe
+  - wc in child process, enter 'hello world', control+d, then 0 2 11 result as output
+node find-wc.js
+  - pipe stdin & stdout
+  - the result of the first process 'find' - find all files, as input of second process 'wc' - calculate lines
