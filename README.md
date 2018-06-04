@@ -160,6 +160,17 @@ node spawn
   - run command in child process, can register listener on event
 node spawn-pipe
   - wc in child process, enter 'hello world', control+d, then 0 2 11 result as output
-node find-wc.js
+node find-wc.jos
   - pipe stdin & stdout
   - the result of the first process 'find' - find all files, as input of second process 'wc' - calculate lines
+node exec.js
+  execFile() create shell, while spawn does not, which makes spawn slightly more efficient. execFile buffers the commands generated output, and pass the whole value into a callback function. It buffers result into memoery, not good for big files.
+
+node detach.js
+ps -ef | grep timer.js
+  make child process to run independently from parent process, exact behaviour depend on os. (on Windows, own console window. on Linux, the detach child process will be in the leader of group child session.)
+
+execFile() - executing file without using the shell. A little efficient without shell.
+
+all of the command has its syncronized version
+spawnSync(), forkSync(), execSync(), execFileSync();
