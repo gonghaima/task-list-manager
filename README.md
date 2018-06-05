@@ -170,7 +170,11 @@ node detach.js
 ps -ef | grep timer.js
   make child process to run independently from parent process, exact behaviour depend on os. (on Windows, own console window. on Linux, the detach child process will be in the leader of group child session.)
 
-execFile() - executing file without using the shell. A little efficient without shell.
+  execFile() - executing file without using the shell. A little efficient without shell.
 
-all of the command has its syncronized version
-spawnSync(), forkSync(), execSync(), execFileSync();
+  all of the command has its syncronized version
+  spawnSync(), forkSync(), execSync(), execFileSync();
+
+
+fork() - variation of spawn function running node processes, the difference is the fork starting communication channel from child process, can use the same method (event module ) to exchange message between child to parent process, via event.
+node parent.js
