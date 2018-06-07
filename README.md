@@ -178,3 +178,10 @@ ps -ef | grep timer.js
 
 fork() - variation of spawn function running node processes, the difference is the fork starting communication channel from child process, can use the same method (event module ) to exchange message between child to parent process, via event.
 node parent.js
+
+(Based on fork function) Cluster Module is to enable load balancing over environmental multiple cpu cores. It based on fork function, allow us to fork main application process as many time we have cpu cores, but only for one machine (big machine with lots of resources, add more resources into one machine rather than new machine). Then it will take over and load balancing all requests to the main process across all forked processes.
+
+To implement Cluster module - 
+  1. create a master process
+  2. create many child process
+  3. For incomming requests, master process use 'Round-robin' to direct to each child process sequencially. (some other more intelligent algothm can be used.)
