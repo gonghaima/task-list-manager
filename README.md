@@ -185,3 +185,10 @@ To implement Cluster module -
   1. create a master process
   2. create many child process
   3. For incomming requests, master process use 'Round-robin' to direct to each child process sequencially. (some other more intelligent algothm can be used.)
+
+node cluster-server.js
+node cluster-less-server.js
+to make a request from terminal: curl localhost:8080
+to compare the performance using ApacheBench tool: 
+(this request will make 200 concurrent call in 10 second)
+ab -c200 -t10 http://localhost:8080
