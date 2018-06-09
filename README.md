@@ -192,3 +192,23 @@ to make a request from terminal: curl localhost:8080
 to compare the performance using ApacheBench tool: 
 (this request will make 200 concurrent call in 10 second)
 ab -c200 -t10 http://localhost:8080/
+
+Availability and Zero-downtime restarts
+node cluster-zero-downtime.js
+start a new worker as soon as one crashed.
+
+
+When require all worker restart, for example new code being deployed, we will restart one at a time. While in ab load testing, kill the master process, we can see the works are restarting in sequence, but restart does not impact availability at all.
+node cluster-all-restart.js
+ab -c200 -t10 http://localhost:8080/
+kill -SIGUSR2 6441
+
+Process monitor, like pm2, makes all the tests we went through extremely easy, and gives lots of feature to monitor the health a node application. For example, 
+to launch a cluster on any app,
+pm2 start app.js -i max
+
+to do zero down time reload
+pm2 reload all
+
+to scale application instances
+pm2 scale <app_name> <instance_number>
