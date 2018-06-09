@@ -191,4 +191,4 @@ node cluster-less-server.js
 to make a request from terminal: curl localhost:8080
 to compare the performance using ApacheBench tool: 
 (this request will make 200 concurrent call in 10 second)
-ab -c200 -t10 http://localhost:8080
+ab -c200 -t10 http://localhost:8080/
