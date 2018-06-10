@@ -212,3 +212,12 @@ pm2 reload all
 
 to scale application instances
 pm2 scale <app_name> <instance_number>
+
+Shared State and Sticky Load Balancing
+1. Cache in Master process, so all worker can subscribe to it. Otherwise, workers cache would not be able to share.
+2. If need cache in Cluster setup, we have to use separate entity, and read/write from that entity's api from all workers. This entity can be a database server/ in memory cache (like redis)/ a dedicated node process with a READ/WRITE api for all other workers to communicate with.
+3. For stateful situation, like authenticated user, load-balancer cannot guarantee it will always route to the worker containing the user info. If code modification is not an option, there is a less invasive, but not as efficient strategy - Sticky Load Balancing. It is simple to implement, as many load balancers support this strategy out of the box.
+
+The idea is simple, when a user authenticates with a worker instance, we keep a record of that relation on load-balancer level. Then when the same user sends a new request, we do a lookup in this record to figure out which server has their session authenticated and keep sending them to that server instead of the normal distributed behaviour. This way, the code on the server side does not have to be changed, but we don't really get the benefit of load balancing for authenticated users here, so only use sticky load balancing if you have no other option.
+
+The cluster module actually does not support sticky load balancing, but a few other load balancers can be configured to do sticky load balancing by default.
